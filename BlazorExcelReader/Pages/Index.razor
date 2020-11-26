@@ -1,0 +1,44 @@
+﻿@page "/"
+@inherits IndexBase
+@using BlazorExcelReader.Models
+
+<h2 class="mb-4 text-secondary">Read and save excel file to database</h2>
+
+<div>
+    <InputFile OnChange="HandleFileUpload" style="padding:1px 0px 1px 2px; background-color:#479cc8; width:200px; border-radius:5px; color:white;">Upload</InputFile>
+</div>
+
+@if (UnChoose)
+{
+    <RadzenButton Click="@ReadExcel" Text="Read Excel" ButtonStyle="ButtonStyle.Secondary" Style="margin-bottom: 20px; margin-top:5px; margin-bottom: 20px; width: 200px;" />
+}
+
+@if (IsTrue)
+{
+    <RadzenGrid AllowPaging="true" AllowSorting="true" Data="@students" TItem="Student">
+        <Columns>
+            <RadzenGridColumn TItem="Student" Context="data" Property="FirstName" Title="FirstName" Type="string">
+                <Template>
+                    @data.FirstName
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Student" Context="data" Property="LastName" Title="LastName" Type="string">
+                <Template>
+                    @data.LastName
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="Student" Context="data" Property="FullName" Title="FullName" Type="string">
+                <Template>
+                    @data.FullName
+                </Template>
+            </RadzenGridColumn>
+        </Columns>
+    </RadzenGrid>
+}
+
+@if (IsTrue)
+{
+    <RadzenButton Click="@UploadLoad" Text="Upload" ButtonStyle="ButtonStyle.Success" Style="margin-bottom: 20px; margin-top:5px; width: 150px; margin-top:5px; margin-right:3px" />
+    <RadzenButton Click="@Cancel" Text="Cancel" ButtonStyle="ButtonStyle.Warning" Style="margin-bottom: 20px; width: 150px; margin-top:5px;" />
+}
+    

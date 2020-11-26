@@ -1,0 +1,82 @@
+﻿@page "/smsmessage"
+@inherits SMSMessageBase
+@using BlazorExcelReader.Models
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <RadzenFieldset Text="Send SMS" Style="width:500px;">
+                <EditForm Model="SmsModel" OnValidSubmit="SendSms">
+                    <DataAnnotationsValidator />
+                    <RadzenCard>
+                        <div class="row">
+                            <p>
+                                <MatTextField Label="Phone number" @bind-Value="SmsModel.ToNumber" Type="number" Style=" width: 430px; height:45px" />
+                                <ValidationMessage For="@(() => SmsModel.ToNumber)" />
+                            </p>
+                        </div>
+                    </RadzenCard>
+                    <RadzenCard>
+                        <div class="row">
+                            <p>
+                                <MatTextField TextArea="true" @bind-Value="@SmsModel.SMSText" Style=" width: 430px; height:70px" Label="Message"></MatTextField>
+                                <ValidationMessage For="@(() => SmsModel.SMSText)" />
+                            </p>
+                        </div>
+                    </RadzenCard>
+                    <RadzenCard>
+                        <div class="row">
+                            <p>
+                                <MatButton Type="submit" Raised="true">Send Sms</MatButton>
+                            </p>
+                        </div>
+                    </RadzenCard>
+                </EditForm>
+            </RadzenFieldset>
+        </div>
+
+        <div class="col-sm-6">
+            <RadzenFieldset Text="Send SMS" Style="width:500px;">
+                <EditForm Model="model" OnValidSubmit="SendEmail">
+                    <DataAnnotationsValidator />
+                    <RadzenCard>
+                        <div class="row">
+                            <p>
+                                <MatTextField @bind-Value="@model.ToEmail" Style=" width: 430px; height:45px" Label="email"></MatTextField>
+                                <ValidationMessage For="@(() => model.ToEmail)" />
+                            </p>
+                        </div>
+                    </RadzenCard>
+                    <RadzenCard>
+                        <div class="row">
+                            <p>
+                                <MatTextField @bind-Value="@model.Subject" Style=" width: 430px; height:45px" Label="subject"></MatTextField>
+                                <ValidationMessage For="@(() => model.Subject)" />
+                            </p>
+                        </div>
+                    </RadzenCard>
+                    <RadzenCard>
+                        <div class="row">
+                            <p>
+                                <MatTextField TextArea="true" @bind-Value="@model.EmailContent" Style=" width: 430px; height:70px" Label="content"></MatTextField>
+                                <ValidationMessage For="@(() => model.EmailContent)" />
+                            </p>
+                        </div>
+                    </RadzenCard>
+                    <RadzenCard>
+                        <div class="row">
+                            <p>
+                                <MatButton Type="submit" Raised="true">Send Email</MatButton>
+                            </p>
+                        </div>
+                    </RadzenCard>
+                </EditForm>
+            </RadzenFieldset>
+        </div>
+    </div>
+</div>
+
+
+
+
+
